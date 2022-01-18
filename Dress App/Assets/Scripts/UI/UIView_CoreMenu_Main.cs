@@ -12,6 +12,12 @@ public class UIView_CoreMenu_Main : UIView
     [SerializeField] private TextMeshProUGUI currentItemLabel = null;
     [SerializeField] private TextMeshProUGUI newItemLabel = null;
 
+    public override void ShowView()
+    {
+        base.ShowView();
+        currentItemLabel.text = "";
+    }
+
     public void WearItem()
     {
         string currentItemName = onWearItem?.Invoke();
@@ -25,7 +31,7 @@ public class UIView_CoreMenu_Main : UIView
     public void SelectNextItem() { SelectNewItem(1); }
     public void SelectPreviousItem() { SelectNewItem(-1); }
 
-    private void SelectNewItem(int value)
+    public void SelectNewItem(int value)
     {
         string newItemName = onChangeItem?.Invoke(value);
 

@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     private int newItemIndex;
     private bool canChangeItem;
 
+    public CharacterControl CharacterControl { get => characterControl; }
+
     private void Awake()
     {
         items = Resources.LoadAll<Item>("Items").ToList();
@@ -31,7 +33,11 @@ public class GameManager : MonoBehaviour
 
     public string SelectNewItem(int value)
     {
-        newItemIndex = (newItemIndex + value) % items.Count;
+        if (newItemIndex + value < 0)
+            newItemIndex = items.Count - 1;
+        else
+            newItemIndex = (newItemIndex + value) % items.Count;
+
         newItem = items[newItemIndex];
 
         return newItem.name;

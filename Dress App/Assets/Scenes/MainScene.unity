@@ -377,7 +377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6694661230235264687, guid: f2d918f85c08e12408a172688545aacd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6694661230235264687, guid: f2d918f85c08e12408a172688545aacd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -435,6 +435,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topMeshRenderer: {fileID: 692034069}
+  waist: {fileID: 855970669}
+  waistScalingSpeed: 1
+  waistScaleLimits: {x: 0.8, y: 1.3}
 --- !u!4 &447174391 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7941395704631609225, guid: 5a78e86cd9de7b4459ba7ff273745ae9, type: 3}
@@ -833,6 +836,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &821625873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6694661230235264685, guid: f2d918f85c08e12408a172688545aacd, type: 3}
+  m_PrefabInstance: {fileID: 337541397}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &821625878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821625873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b59614c2e2961549a38eb10fa2f2d57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onButtonHeld:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 858823557}
+        m_TargetAssemblyTypeName: UIView_CoreMenu_Main, Assembly-CSharp
+        m_MethodName: IncreaseWaistSize
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &855970669 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7938426276823935911, guid: 5a78e86cd9de7b4459ba7ff273745ae9, type: 3}
+  m_PrefabInstance: {fileID: 2059226772}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &858823554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1686,7 +1726,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6694661230235264687, guid: f2d918f85c08e12408a172688545aacd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6694661230235264687, guid: f2d918f85c08e12408a172688545aacd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -1726,6 +1766,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2d918f85c08e12408a172688545aacd, type: 3}
+--- !u!1 &1336528194 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6694661230235264685, guid: f2d918f85c08e12408a172688545aacd, type: 3}
+  m_PrefabInstance: {fileID: 1300582622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1336528199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336528194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b59614c2e2961549a38eb10fa2f2d57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onButtonHeld:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 858823557}
+        m_TargetAssemblyTypeName: UIView_CoreMenu_Main, Assembly-CSharp
+        m_MethodName: DecreaseWaistSize
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1459933526
 PrefabInstance:
   m_ObjectHideFlags: 0
