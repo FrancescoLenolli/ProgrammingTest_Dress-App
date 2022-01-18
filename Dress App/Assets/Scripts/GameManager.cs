@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
 
     private MeshFilter newItemMeshFilter;
     private MeshRenderer newItemMeshRenderer;
+    private Item newItem;
+    private int newItemIndex;
+    private bool canChangeItem;
 
     private void Awake()
     {
@@ -21,8 +24,24 @@ public class GameManager : MonoBehaviour
         newItemMeshRenderer = newItemObject.GetComponent<MeshRenderer>();
 
         newItemObject.position = newItemStartingPosition.position;
+        newItemIndex = 0;
+        newItem = items[newItemIndex];
+        canChangeItem = true;
+    }
 
-        ChangeItem(items[0]);
+    public string SelectNewItem(int value)
+    {
+        newItemIndex = (newItemIndex + value) % items.Count;
+        newItem = items[newItemIndex];
+
+        return newItem.name;
+    }
+
+    public string ChangeItem()
+    {
+        StartCoroutine(ChangeItemRoutine(newItem));
+
+        return newItem.name;
     }
 
     private void ChangeNewItem(Item newItem)
@@ -36,22 +55,21 @@ public class GameManager : MonoBehaviour
         newItemObject.position = newItemStartingPosition.position;
     }
 
-    private void ChangeItem(Item newItem)
-    {
-        StartCoroutine(ChangeItemRoutine(newItem));
-    }
-
     private IEnumerator ChangeItemRoutine(Item newItem)
     {
-        yield return new WaitForSeconds(3f);
+        if (!canChangeItem)
+            yield return null;
 
-        bool canAnimate = true;
+        canChangeItem = false;
         float time = 0f;
+
         characterControl.ShowCurrentItem(false);
         characterControl.ChangeItem(newItem);
+        characterRotation.ResetRotation();
+        characterRotation.CanRotate = false;
         ChangeNewItem(newItem);
 
-        while(canAnimate)
+        while (!canChangeItem)
         {
             time = Mathf.Clamp(time + Time.deltaTime, 0f, 1f);
 
@@ -63,7 +81,8 @@ public class GameManager : MonoBehaviour
             {
                 ResetNewItemPosition();
                 characterControl.ShowCurrentItem(true);
-                canAnimate = false;
+                canChangeItem = true;
+                characterRotation.CanRotate = true;
             }
 
             yield return null;

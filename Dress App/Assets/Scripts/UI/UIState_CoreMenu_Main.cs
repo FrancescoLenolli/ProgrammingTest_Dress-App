@@ -13,8 +13,8 @@ public class UIState_CoreMenu_Main : UIState_CoreMenu
         view = root.mainView;
         myView = view;
 
-        //view.onChangeItem += ;
+        view.onChangeItem += root.gameManager.SelectNewItem;
         //view.onChangeWaistSize += ;
-        //view.onWearItem += ;
+        view.onWearItem += root.gameManager.ChangeItem;
     }
 }
