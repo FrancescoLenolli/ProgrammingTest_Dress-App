@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class CharacterControl : MonoBehaviour
@@ -6,12 +8,21 @@ public class CharacterControl : MonoBehaviour
     [SerializeField] private Transform waist = null;
     [SerializeField] private float waistScalingSpeed = 1f;
     [SerializeField] private Vector2 waistScaleLimits = Vector2.one;
-    private Vector3 waistStartingScale = Vector3.one;
+    private Vector3 waistStartingScale;
+    private List<Transform> waistChildren;
 
     public Vector3 TopMeshPosition { get => topMeshRenderer.transform.position; }
 
     private void Awake()
     {
+        waistChildren = new List<Transform>();
+        foreach(Transform child in waist)
+        {
+            if (child != waist)
+                waistChildren.Add(child);
+        }
+
+        waistStartingScale = waist.localScale;
         ResetWaistSize();
     }
 
@@ -36,10 +47,19 @@ public class CharacterControl : MonoBehaviour
 
     public int ChangeWaistSize(int value)
     {
+        foreach (Transform child in waistChildren)
+        {
+            child.parent = null;
+        }
+
         float scaleChange = value * waistScalingSpeed * Time.deltaTime;
         float newScale = Mathf.Clamp(waist.localScale.x + scaleChange, waistScaleLimits.x, waistScaleLimits.y);
-
         waist.localScale = new Vector3(newScale, transform.localScale.y, newScale);
+
+        foreach (Transform child in waistChildren)
+        {
+            child.parent = waist;
+        }
 
         return CheckWaistScaleStatus(newScale);
     }
@@ -47,6 +67,13 @@ public class CharacterControl : MonoBehaviour
     public void ResetWaistSize()
     {
         waist.localScale = waistStartingScale;
+        foreach(Transform child in waist)
+        {
+            if(child != waist)
+            {
+                child.localScale = Vector3.one;
+            }
+        }    
     }
 
     /// <summary>

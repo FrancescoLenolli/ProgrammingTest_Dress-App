@@ -41,7 +41,6 @@ public class UIView_CoreMenu_Main : UIView
 
     public void IncreaseWaistSize()
     {
-        Debug.Log("Waist");
         int waistStatus = (int)onChangeWaistSize?.Invoke(1);
 
         if (waistStatus == 1)

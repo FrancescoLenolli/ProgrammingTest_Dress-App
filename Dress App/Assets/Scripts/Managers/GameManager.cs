@@ -71,6 +71,13 @@ public class GameManager : MonoBehaviour
             {
                 newItemObject.transform.position = Vector3.Lerp
                     (newItemObject.transform.position, characterControl.TopMeshPosition, time);
+
+                /*
+                 * Brutal fix. The T-Pose animation shift a little forward
+                 * the character model causing the item falling down to clip horribly with the character model.
+                 */
+                newItemObject.transform.position = new Vector3
+                    (newItemObject.StartingPosition.x, newItemObject.transform.position.y, newItemObject.StartingPosition.z);
             }
             else
             {

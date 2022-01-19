@@ -11,6 +11,8 @@ public class ItemObject : MonoBehaviour
     private MeshRenderer meshRenderer;
     private Vector3 startingPosition;
 
+    public Vector3 StartingPosition { get => startingPosition; }
+
     private void Awake()
     {
         meshFilter = GetComponent<MeshFilter>();
