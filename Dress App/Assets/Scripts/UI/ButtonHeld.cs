@@ -1,8 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 /// <summary>
 /// Add this component to a Button if you want to call a method continuously
@@ -11,7 +11,14 @@ using UnityEngine.EventSystems;
 public class ButtonHeld : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] private UnityEvent onButtonHeld = null;
+
     private bool canInvokeEvent = false;
+    private Button button;
+
+    private void Awake()
+    {
+        button = GetComponent<Button>();
+    }
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -26,7 +33,7 @@ public class ButtonHeld : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public IEnumerator ButtonHeldRoutine()
     {
-        while (canInvokeEvent)
+        while (canInvokeEvent && button.IsInteractable())
         {
             onButtonHeld?.Invoke();
             yield return null;

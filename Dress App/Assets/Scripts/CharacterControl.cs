@@ -34,16 +34,35 @@ public class CharacterControl : MonoBehaviour
         // TODO: Stop the current animation if one is playing.
     }
 
-    public void ChangeWaistSize(int value)
+    public int ChangeWaistSize(int value)
     {
         float scaleChange = value * waistScalingSpeed * Time.deltaTime;
         float newScale = Mathf.Clamp(waist.localScale.x + scaleChange, waistScaleLimits.x, waistScaleLimits.y);
 
         waist.localScale = new Vector3(newScale, transform.localScale.y, newScale);
+
+        return CheckWaistScaleStatus(newScale);
     }
 
     public void ResetWaistSize()
     {
         waist.localScale = waistStartingScale;
+    }
+
+    /// <summary>
+    /// Return -1 if scale is equal to its minimum value.
+    /// Return 1 if scale is equal to its maximum value.
+    /// Return 0 if scale is in between min and max value.
+    /// </summary>
+    private int CheckWaistScaleStatus(float newScale)
+    {
+        int waistScaleStatus = 0;
+
+        if (newScale == waistScaleLimits.x)
+            waistScaleStatus = -1;
+        if (newScale == waistScaleLimits.y)
+            waistScaleStatus = 1;
+
+        return waistScaleStatus;
     }
 }
