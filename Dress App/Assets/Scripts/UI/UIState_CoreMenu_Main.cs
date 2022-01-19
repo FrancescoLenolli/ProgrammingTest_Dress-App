@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UIFramework.StateMachine;
-using UnityEngine;
 
 public class UIState_CoreMenu_Main : UIState_CoreMenu
 {
@@ -17,7 +14,8 @@ public class UIState_CoreMenu_Main : UIState_CoreMenu
         view.onChangeWaistSize += root.gameManager.CharacterControl.ChangeWaistSize;
         view.onWearItem += root.gameManager.ChangeItem;
 
-        // Initialise newItemLabel text in the UI View with the first Item on the Items list.
+        // Initialise newItemLabel text in the UIView with the first Item on the Items list.
+        // Pass 0 as value to avoid switching the selected Item.
         view.SelectNewItem(0);
     }
 }

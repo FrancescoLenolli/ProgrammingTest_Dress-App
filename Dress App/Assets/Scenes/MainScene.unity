@@ -264,7 +264,7 @@ MonoBehaviour:
   items: []
   characterControl: {fileID: 447174389}
   characterRotation: {fileID: 473377242}
-  newItemObject: {fileID: 1041474442}
+  newItemObject: {fileID: 1041474443}
   newItemStartingPosition: {fileID: 2029406744}
 --- !u!4 &253336149
 Transform:
@@ -472,8 +472,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.5, z: 1}
+  m_Center: {x: 0, y: 0.19365893, z: 0}
 --- !u!4 &473377241
 Transform:
   m_ObjectHideFlags: 0
@@ -501,7 +501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetObject: {fileID: 447174391}
-  rotationSpeed: 300
+  rotationSpeed: 1200
 --- !u!114 &560791687 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9079275597724651803, guid: f2d918f85c08e12408a172688545aacd, type: 3}
@@ -600,7 +600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 572942625}
-  startingState: {fileID: 572942624}
+  startingState: {fileID: 572942623}
 --- !u!1001 &673159443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1416,8 +1416,9 @@ GameObject:
   - component: {fileID: 1041474442}
   - component: {fileID: 1041474441}
   - component: {fileID: 1041474440}
+  - component: {fileID: 1041474443}
   m_Layer: 0
-  m_Name: NewItem
+  m_Name: NewItemObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1486,6 +1487,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
+--- !u!114 &1041474443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041474439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e616f8c36b804418716c402bef0cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1206511408
 PrefabInstance:
   m_ObjectHideFlags: 0

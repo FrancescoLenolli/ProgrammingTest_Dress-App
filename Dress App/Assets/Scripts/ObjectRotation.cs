@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages rotation of a given target.
+/// </summary>
 public class ObjectRotation : MonoBehaviour
 {
     [SerializeField] private Transform targetObject = null;
@@ -28,5 +29,11 @@ public class ObjectRotation : MonoBehaviour
     public void ResetRotation()
     {
         targetObject.rotation = startingRotation;
+    }
+
+    public void LockRotation()
+    {
+        ResetRotation();
+        CanRotate = false;
     }
 }

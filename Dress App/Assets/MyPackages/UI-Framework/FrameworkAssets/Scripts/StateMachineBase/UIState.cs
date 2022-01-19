@@ -28,7 +28,8 @@ namespace UIFramework.StateMachine
         /// <param name="index"></param>
         public virtual void LoadScene(int index)
         {
-            if (index > SceneManager.sceneCountInBuildSettings - 1)
+            bool isIndexOutOfRange = index > SceneManager.sceneCountInBuildSettings - 1;
+            if (isIndexOutOfRange)
             {
                 Debug.LogWarning($"No scene with index {index}. Go to File > Build Settings to check the available scenes.");
                 return;
