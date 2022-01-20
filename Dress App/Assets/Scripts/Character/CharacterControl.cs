@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 
 public class CharacterControl : MonoBehaviour
@@ -20,7 +19,7 @@ public class CharacterControl : MonoBehaviour
         animator = GetComponent<CharacterAnimator>();
 
         waistChildren = new List<Transform>();
-        foreach(Transform child in waist)
+        foreach (Transform child in waist)
         {
             if (child != waist)
                 waistChildren.Add(child);
@@ -52,6 +51,13 @@ public class CharacterControl : MonoBehaviour
 
     public int ChangeWaistSize(int value)
     {
+        /*
+         * The waist is part of the Character's Avatar,
+         * that is responsible for the animations. If I change the scale,
+         * The entire model scales accordingly.
+         * To prevent this, I can temporarily detach the rest of the children, scale the waist, and re-attach them.
+         * There's some error in the children scale once they're attached back, but I don't know what's causing it.
+         */
         foreach (Transform child in waistChildren)
         {
             child.parent = null;
@@ -72,13 +78,13 @@ public class CharacterControl : MonoBehaviour
     public void ResetWaistSize()
     {
         waist.localScale = waistStartingScale;
-        foreach(Transform child in waist)
+        foreach (Transform child in waist)
         {
-            if(child != waist)
+            if (child != waist)
             {
                 child.localScale = Vector3.one;
             }
-        }    
+        }
     }
 
     /// <summary>

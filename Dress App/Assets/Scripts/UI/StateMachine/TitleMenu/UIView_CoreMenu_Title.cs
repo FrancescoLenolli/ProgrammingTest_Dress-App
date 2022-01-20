@@ -1,9 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UIFramework.StateMachine;
-using UnityEngine;
 
+/// <summary>
+/// Handles everything that happens visually on the application's Title Menu.
+/// </summary>
 public class UIView_CoreMenu_Title : UIView
 {
     public Action onStart;

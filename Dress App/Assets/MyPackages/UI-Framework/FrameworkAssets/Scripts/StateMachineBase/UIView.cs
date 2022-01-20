@@ -8,7 +8,7 @@ namespace UIFramework.StateMachine
     public class UIView : MonoBehaviour
     {
         /// <summary>
-        /// Method called to show view.
+        /// Set the UIView to be visible on screen.
         /// </summary>
         public virtual void ShowView()
         {
@@ -16,7 +16,7 @@ namespace UIFramework.StateMachine
         }
 
         /// <summary>
-        /// Method called to hide view.
+        /// Hide the UIView from the screen.
         /// </summary>
         public virtual void HideView()
         {

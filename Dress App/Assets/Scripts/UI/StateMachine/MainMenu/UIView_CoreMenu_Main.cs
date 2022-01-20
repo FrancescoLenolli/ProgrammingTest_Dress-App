@@ -4,6 +4,9 @@ using UIFramework.StateMachine;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Handles everything that happens visually on the application's Main Menu.
+/// </summary>
 public class UIView_CoreMenu_Main : UIView
 {
     public Func<int, int> onChangeWaistSize;
@@ -34,7 +37,7 @@ public class UIView_CoreMenu_Main : UIView
             // Deactivate the button to prevent the User from wearing the same item twice.
             ActivateWearItemButton(false);
 
-            // Waist size is reset when User wears new item, so buttons need to be reset.
+            // Waist size is reset when User wears new item, so buttons need to be reset as well.
             increaseWaistButton.interactable = true;
             decreaseWaistButton.interactable = true;
         }

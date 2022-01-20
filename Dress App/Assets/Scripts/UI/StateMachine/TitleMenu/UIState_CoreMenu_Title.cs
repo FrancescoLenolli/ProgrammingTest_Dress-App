@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UIFramework.StateMachine;
-using UnityEngine;
 
+/// <summary>
+/// Handles UI logic for the application's Title Menu.
+/// </summary>
 public class UIState_CoreMenu_Title : UIState_CoreMenu
 {
     private UIView_CoreMenu_Title view;

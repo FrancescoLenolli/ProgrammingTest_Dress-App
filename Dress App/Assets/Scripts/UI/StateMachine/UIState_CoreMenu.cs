@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UIFramework.StateMachine;
-using UnityEngine;
 
 /// <summary>
 /// Base UIState for every other application's UIState.

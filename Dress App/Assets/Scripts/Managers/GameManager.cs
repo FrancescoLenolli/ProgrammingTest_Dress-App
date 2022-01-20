@@ -8,8 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Item> items = new List<Item>();
     [SerializeField] private CharacterControl characterControl = null;
     [SerializeField] private ObjectRotation characterRotation = null;
-    // The item model that corresponds to the item the User will wear next.
-    [SerializeField] private ItemObject newItemObject = null;
+    [SerializeField] private ItemObject newItemObject = null;               // The item model that corresponds to the item the User will wear next.
     [SerializeField] private Transform newItemStartingPosition = null;
 
     private Item newItem;
@@ -51,6 +50,40 @@ public class GameManager : MonoBehaviour
         return newItem.name;
     }
 
+    private void LockApplication()
+    {
+        /*
+         * Lock Character's animation and rotation to prevent visual glitches
+         * when changing weared item.
+         */
+        characterControl.WearNewItem(newItem);
+        characterRotation.LockRotation();
+        newItemObject.ChangeNewItem(newItem);
+    }
+
+    private void ReleaseApplication()
+    {
+        //Once the Character is wearing the new item, re-enable animation and rotation.
+        newItemObject.ResetPosition();
+        characterControl.ShowCurrentItem(true);
+        characterControl.Animator.CanAnimate = true;
+        canChangeItem = true;
+        characterRotation.CanRotate = true;
+    }
+
+    private void MoveItemObject(float time)
+    {
+        newItemObject.transform.position = Vector3.Lerp
+            (newItemObject.transform.position, characterControl.TopMeshPosition, time);
+
+        /*
+         * Brutal fix. The T-Pose animation shift a little forward
+         * the character model causing the item falling down to clip horribly with the character model.
+         */
+        newItemObject.transform.position = new Vector3
+            (newItemObject.StartingPosition.x, newItemObject.transform.position.y, newItemObject.StartingPosition.z);
+    }
+
     private IEnumerator ChangeItemRoutine(Item newItem)
     {
         if (!canChangeItem)
@@ -58,35 +91,16 @@ public class GameManager : MonoBehaviour
 
         canChangeItem = false;
         float time = 0f;
-
-        characterControl.WearNewItem(newItem);
-        characterRotation.LockRotation();
-        newItemObject.ChangeNewItem(newItem);
+        LockApplication();
 
         while (!canChangeItem)
         {
             time = Mathf.Clamp(time + Time.deltaTime, 0f, 1f);
 
             if (time < 1)
-            {
-                newItemObject.transform.position = Vector3.Lerp
-                    (newItemObject.transform.position, characterControl.TopMeshPosition, time);
-
-                /*
-                 * Brutal fix. The T-Pose animation shift a little forward
-                 * the character model causing the item falling down to clip horribly with the character model.
-                 */
-                newItemObject.transform.position = new Vector3
-                    (newItemObject.StartingPosition.x, newItemObject.transform.position.y, newItemObject.StartingPosition.z);
-            }
+                MoveItemObject(time);
             else
-            {
-                newItemObject.ResetPosition();
-                characterControl.ShowCurrentItem(true);
-                characterControl.Animator.CanAnimate = true;
-                canChangeItem = true;
-                characterRotation.CanRotate = true;
-            }
+                ReleaseApplication();
 
             yield return null;
         }

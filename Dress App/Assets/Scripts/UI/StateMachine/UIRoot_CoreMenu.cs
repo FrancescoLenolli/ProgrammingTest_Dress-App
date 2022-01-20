@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UIFramework.StateMachine;
-using UnityEngine;
 
 /// <summary>
 /// Root for the application's UI. Can contain other useful references.

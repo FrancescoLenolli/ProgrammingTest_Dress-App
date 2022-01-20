@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Holds values for a given item.
+/// </summary>
 [CreateAssetMenu(menuName = "CustomAssets/Item", fileName = "NewItem")]
 public class Item : ScriptableObject
 {

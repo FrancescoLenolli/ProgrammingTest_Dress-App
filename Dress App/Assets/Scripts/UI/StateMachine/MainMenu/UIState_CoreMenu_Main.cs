@@ -1,5 +1,8 @@
 using UIFramework.StateMachine;
 
+/// <summary>
+/// Handles UI logic for the application's Main Menu.
+/// </summary>
 public class UIState_CoreMenu_Main : UIState_CoreMenu
 {
     private UIView_CoreMenu_Main view;
