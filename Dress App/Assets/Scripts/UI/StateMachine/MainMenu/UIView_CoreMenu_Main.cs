@@ -73,7 +73,7 @@ public class UIView_CoreMenu_Main : UIView
 
         if (newItemName != null)
         {
-            newItemLabel.text = $"Try:\n{newItemName}";
+            newItemLabel.text = newItemName;
             ActivateWearItemButton(true);
         }
     }

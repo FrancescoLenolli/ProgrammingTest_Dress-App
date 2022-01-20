@@ -63,16 +63,22 @@ public class CharacterControl : MonoBehaviour
             child.parent = null;
         }
 
-        float scaleChange = value * waistScalingSpeed * Time.deltaTime;
-        float newScale = Mathf.Clamp(waist.localScale.x + scaleChange, waistScaleLimits.x, waistScaleLimits.y);
-        waist.localScale = new Vector3(newScale, transform.localScale.y, newScale);
+        /*
+         * X axis represents the Character's flanks, Z axis its gut.
+         * Scaling the flanks as much as the gut will cause the Character to look too unrealistic.
+         */
+        float scaleChangeX = value * (waistScalingSpeed / 2) * Time.deltaTime;
+        float scaleChangeZ = value * waistScalingSpeed * Time.deltaTime;
+        float newScaleX = Mathf.Clamp(waist.localScale.x + scaleChangeX, waistScaleLimits.x, waistScaleLimits.y);
+        float newScaleZ = Mathf.Clamp(waist.localScale.z + scaleChangeZ, waistScaleLimits.x, waistScaleLimits.y);
+        waist.localScale = new Vector3(newScaleX, transform.localScale.y, newScaleZ);
 
         foreach (Transform child in waistChildren)
         {
             child.parent = waist;
         }
 
-        return CheckWaistScaleStatus(newScale);
+        return CheckWaistScaleStatus(newScaleZ);
     }
 
     public void ResetWaistSize()
