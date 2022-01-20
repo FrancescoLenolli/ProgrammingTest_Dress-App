@@ -13,6 +13,7 @@ public class UIState_CoreMenu_Main : UIState_CoreMenu
         view.onChangeItem += root.gameManager.SelectNewItem;
         view.onChangeWaistSize += root.gameManager.CharacterControl.ChangeWaistSize;
         view.onWearItem += root.gameManager.ChangeItem;
+        view.onPlayAnimation += root.gameManager.CharacterControl.Animator.PlayAnimation;
 
         // Initialise newItemLabel text in the UIView with the first Item on the Items list.
         // Pass 0 as value to avoid switching the selected Item.

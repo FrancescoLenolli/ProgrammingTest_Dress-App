@@ -9,6 +9,7 @@ public class UIView_CoreMenu_Main : UIView
     public Func<int, int> onChangeWaistSize;
     public Func<string> onWearItem;
     public Func<int, string> onChangeItem;
+    public Action onPlayAnimation;
 
     [SerializeField] private TextMeshProUGUI currentItemLabel = null;
     [SerializeField] private TextMeshProUGUI newItemLabel = null;
@@ -61,6 +62,7 @@ public class UIView_CoreMenu_Main : UIView
 
     public void SelectNextItem() { SelectNewItem(1); }
     public void SelectPreviousItem() { SelectNewItem(-1); }
+    public void PlayAnimation() { onPlayAnimation?.Invoke(); }
 
     public void SelectNewItem(int value)
     {

@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
             {
                 newItemObject.ResetPosition();
                 characterControl.ShowCurrentItem(true);
+                characterControl.Animator.CanAnimate = true;
                 canChangeItem = true;
                 characterRotation.CanRotate = true;
             }

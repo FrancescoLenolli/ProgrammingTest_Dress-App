@@ -10,11 +10,15 @@ public class CharacterControl : MonoBehaviour
     [SerializeField] private Vector2 waistScaleLimits = Vector2.one;
     private Vector3 waistStartingScale;
     private List<Transform> waistChildren;
+    private CharacterAnimator animator;
 
     public Vector3 TopMeshPosition { get => topMeshRenderer.transform.position; }
+    public CharacterAnimator Animator { get => animator; }
 
     private void Awake()
     {
+        animator = GetComponent<CharacterAnimator>();
+
         waistChildren = new List<Transform>();
         foreach(Transform child in waist)
         {
@@ -42,7 +46,8 @@ public class CharacterControl : MonoBehaviour
         ShowCurrentItem(false);
         ChangeItem(newItem);
         ResetWaistSize();
-        // TODO: Stop the current animation if one is playing.
+        animator.ResetAnimation();
+        animator.CanAnimate = false;
     }
 
     public int ChangeWaistSize(int value)
