@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ObjectRotation characterRotation = null;
     [SerializeField] private ItemObject newItemObject = null;               // The item model that corresponds to the item the User will wear next.
     [SerializeField] private Transform newItemStartingPosition = null;
+    [Min(.1f)]
+    [Tooltip("Speed of the newItemObject when moving from the starting position to the Character's position.")]
+    [SerializeField] private float newItemSpeed = 1f;
 
     private Item newItem;
     private int newItemIndex;
@@ -95,7 +98,7 @@ public class GameManager : MonoBehaviour
 
         while (!canChangeItem)
         {
-            time = Mathf.Clamp(time + Time.deltaTime, 0f, 1f);
+            time = Mathf.Clamp(time + Time.deltaTime * newItemSpeed, 0f, 1f);
 
             if (time < 1)
                 MoveItemObject(time);
