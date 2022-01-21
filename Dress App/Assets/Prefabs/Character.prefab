@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2029406743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2029406744}
+  m_Layer: 0
+  m_Name: NewItemStartingPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2029406744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029406743}
+  m_LocalRotation: {x: -0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: -0.006, y: 3.21, z: 0.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7941395704631609225}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7942102111206618259
 GameObject:
   m_ObjectHideFlags: 0
@@ -1368,7 +1398,7 @@ Transform:
   m_GameObject: {fileID: 7943802505639803163}
   m_LocalRotation: {x: 0.000113759845, y: -0.0040478604, z: 0.9998649, w: 0.01593565}
   m_LocalPosition: {x: -0.0864352, y: -0.06362009, z: 0.00007701861}
-  m_LocalScale: {x: 1.0000982, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7941121245873341191}
   m_Father: {fileID: 7938426276823935911}
@@ -2058,6 +2088,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7941395704631609225}
   - component: {fileID: 8027862593224908373}
+  - component: {fileID: 447174389}
+  - component: {fileID: 447174390}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -2084,6 +2116,7 @@ Transform:
   - {fileID: 7941204494089752315}
   - {fileID: 7938329159210429817}
   - {fileID: 7938498556913089921}
+  - {fileID: 2029406744}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -2106,6 +2139,37 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &447174389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7943993908191997177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c85c40f6e300374da694329b7d799ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topMeshRenderer: {fileID: 8060500283478433343}
+  waist: {fileID: 7941041003747260687}
+  waistScalingSpeed: 1
+  waistScaleLimits: {x: 0.7, y: 1.6}
+--- !u!114 &447174390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7943993908191997177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca4b6d42c978c34889f711cde816611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationTriggers:
+  - T-Pose
+  - Walking
 --- !u!1 &7944011869620605313
 GameObject:
   m_ObjectHideFlags: 0

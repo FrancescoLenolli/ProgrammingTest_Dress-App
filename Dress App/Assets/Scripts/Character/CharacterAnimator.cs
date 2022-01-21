@@ -1,10 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterAnimator : MonoBehaviour
 {
+    [SerializeField] private string[] animationTriggers = new string[0];
+    private List<int> triggerHashes = new List<int>();
     private Animator animator;
-    private int walkTriggerHash;
-    private int tPoseTriggerHash;
+    private int animationIndex;
 
     public bool CanAnimate { get; set; }
 
@@ -13,9 +15,13 @@ public class CharacterAnimator : MonoBehaviour
         CanAnimate = true;
         animator = GetComponent<Animator>();
 
-        // Store the value of the animation triggers for better performance.
-        walkTriggerHash = Animator.StringToHash("Walking");
-        tPoseTriggerHash = Animator.StringToHash("T-Pose");
+        foreach(string trigger in animationTriggers)
+        {
+            triggerHashes.Add(Animator.StringToHash(trigger));
+        }
+
+        animationIndex = 0;
+        PlayAnimation(animationIndex);
     }
 
     // Note: Consider cycling through a list of triggers hashes to play different animations.
@@ -24,11 +30,18 @@ public class CharacterAnimator : MonoBehaviour
         if (!CanAnimate)
             return;
 
-        animator.SetTrigger(walkTriggerHash);
+        animationIndex = (animationIndex + 1) % triggerHashes.Count;
+        PlayAnimation(animationIndex);
     }
 
     public void ResetAnimation()
     {
-        animator.SetTrigger(tPoseTriggerHash);
+        animationIndex = 0;
+        PlayAnimation(animationIndex);
+    }
+
+    private void PlayAnimation(int index)
+    {
+        animator.SetTrigger(triggerHashes[index]);
     }
 }
