@@ -624,6 +624,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1750137888460173475, guid: 721f0424bf3663f4a87fa623fcc927c2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1750137889278314693, guid: 721f0424bf3663f4a87fa623fcc927c2, type: 3}
       propertyPath: m_Name
       value: Environment
@@ -671,6 +675,10 @@ PrefabInstance:
     - target: {fileID: 1750137889278314694, guid: 721f0424bf3663f4a87fa623fcc927c2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750137889616692284, guid: 721f0424bf3663f4a87fa623fcc927c2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 721f0424bf3663f4a87fa623fcc927c2, type: 3}
@@ -783,6 +791,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5519555734125840875, guid: 39db9800e825a4946a5c645e40dc6d10, type: 3}
+      propertyPath: newItemSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519555734125840875, guid: 39db9800e825a4946a5c645e40dc6d10, type: 3}
       propertyPath: newItemObject
       value: 
       objectReference: {fileID: 1041474443}
@@ -815,6 +827,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1432386381185750237, guid: 1df30db855f436141939cf1cb79ecbb0, type: 3}
+      propertyPath: m_text
+      value: Waist ++
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432386382100446486, guid: 1df30db855f436141939cf1cb79ecbb0, type: 3}
+      propertyPath: m_text
+      value: Waist --
+      objectReference: {fileID: 0}
     - target: {fileID: 1650490761932859625, guid: 1df30db855f436141939cf1cb79ecbb0, type: 3}
       propertyPath: m_IsActive
       value: 0
