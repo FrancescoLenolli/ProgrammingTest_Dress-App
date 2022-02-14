@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Bare-bones Animator, it should be fine for this type of application.
 public class CharacterAnimator : MonoBehaviour
 {
-    [SerializeField] private string[] animationTriggers = new string[0];
+    [SerializeField] private string[] animationTriggers = Array.Empty<string>();
     private List<int> triggerHashes = new List<int>();
     private Animator animator;
     private int animationIndex;

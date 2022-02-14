@@ -7,9 +7,8 @@ public class ItemObject : MonoBehaviour
 {
     private MeshFilter meshFilter;
     private MeshRenderer meshRenderer;
-    private Vector3 startingPosition;
 
-    public Vector3 StartingPosition { get => startingPosition; }
+    public Vector3 StartingPosition { get; private set; }
 
     private void Awake()
     {
@@ -19,12 +18,12 @@ public class ItemObject : MonoBehaviour
 
     public void SetStartingPosition(Vector3 startingPosition)
     {
-        this.startingPosition = startingPosition;
+        StartingPosition = startingPosition;
     }
 
     public void ResetPosition()
     {
-        transform.position = startingPosition;
+        transform.position = StartingPosition;
     }
 
     /// <summary>

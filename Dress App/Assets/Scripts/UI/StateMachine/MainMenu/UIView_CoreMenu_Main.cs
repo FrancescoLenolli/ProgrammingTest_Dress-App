@@ -29,18 +29,17 @@ public class UIView_CoreMenu_Main : UIView
     public void WearItem()
     {
         string currentItemName = onWearItem?.Invoke();
+        if (currentItemName == null) return;
+        
+        currentItemLabel.text = currentItemName;
 
-        if (currentItemName != null)
-        {
-            currentItemLabel.text = currentItemName;
+        //TODO: Navigating forward and backwards activates the button again, add check to prevent it.
+        // Deactivate the button to prevent the User from wearing the same item twice.
+        ActivateWearItemButton(false);
 
-            // Deactivate the button to prevent the User from wearing the same item twice.
-            ActivateWearItemButton(false);
-
-            // Waist size is reset when User wears new item, so buttons need to be reset as well.
-            increaseWaistButton.interactable = true;
-            decreaseWaistButton.interactable = true;
-        }
+        // Waist size is reset when User wears new item, so buttons need to be reset as well.
+        increaseWaistButton.interactable = true;
+        decreaseWaistButton.interactable = true;
     }
 
     public void IncreaseWaistSize()

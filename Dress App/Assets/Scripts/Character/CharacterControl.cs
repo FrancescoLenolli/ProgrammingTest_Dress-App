@@ -9,14 +9,13 @@ public class CharacterControl : MonoBehaviour
     [SerializeField] private Vector2 waistScaleLimits = Vector2.one;
     private Vector3 waistStartingScale;
     private List<Transform> waistChildren;
-    private CharacterAnimator animator;
 
-    public Vector3 TopMeshPosition { get => topMeshRenderer.transform.position; }
-    public CharacterAnimator Animator { get => animator; }
+    public Vector3 TopMeshPosition => topMeshRenderer.transform.position;
+    public CharacterAnimator Animator { get; private set; }
 
     private void Awake()
     {
-        animator = GetComponent<CharacterAnimator>();
+        Animator = GetComponent<CharacterAnimator>();
 
         waistChildren = new List<Transform>();
         foreach (Transform child in waist)
@@ -29,12 +28,6 @@ public class CharacterControl : MonoBehaviour
         ResetWaistSize();
     }
 
-    public void ChangeItem(Item newItem)
-    {
-        topMeshRenderer.sharedMesh = newItem.mesh;
-        topMeshRenderer.material = newItem.material;
-    }
-
     public void ShowCurrentItem(bool isVisible)
     {
         topMeshRenderer.gameObject.SetActive(isVisible);
@@ -45,12 +38,16 @@ public class CharacterControl : MonoBehaviour
         ShowCurrentItem(false);
         ChangeItem(newItem);
         ResetWaistSize();
-        animator.ResetAnimation();
-        animator.CanAnimate = false;
+        Animator.ResetAnimation();
+        Animator.CanAnimate = false;
     }
 
     public int ChangeWaistSize(int value)
     {
+        Vector3 waistScale = waist.localScale;
+        float waistScaleX = waistScale.x;
+        float waistScaleZ = waistScale.z;
+        
         /*
          * The waist is part of the Character's Avatar,
          * that is responsible for the animations. If I change the scale,
@@ -69,8 +66,8 @@ public class CharacterControl : MonoBehaviour
          */
         float scaleChangeX = value * (waistScalingSpeed / 2) * Time.deltaTime;
         float scaleChangeZ = value * waistScalingSpeed * Time.deltaTime;
-        float newScaleX = Mathf.Clamp(waist.localScale.x + scaleChangeX, waistScaleLimits.x, waistScaleLimits.y);
-        float newScaleZ = Mathf.Clamp(waist.localScale.z + scaleChangeZ, waistScaleLimits.x, waistScaleLimits.y);
+        float newScaleX = Mathf.Clamp(waistScaleX + scaleChangeX, waistScaleLimits.x, waistScaleLimits.y);
+        float newScaleZ = Mathf.Clamp(waistScaleZ + scaleChangeZ, waistScaleLimits.x, waistScaleLimits.y);
         waist.localScale = new Vector3(newScaleX, transform.localScale.y, newScaleZ);
 
         foreach (Transform child in waistChildren)
@@ -81,7 +78,7 @@ public class CharacterControl : MonoBehaviour
         return CheckWaistScaleStatus(newScaleZ);
     }
 
-    public void ResetWaistSize()
+    private void ResetWaistSize()
     {
         waist.localScale = waistStartingScale;
         foreach (Transform child in waist)
@@ -91,6 +88,12 @@ public class CharacterControl : MonoBehaviour
                 child.localScale = Vector3.one;
             }
         }
+    }
+
+    private void ChangeItem(Item newItem)
+    {
+        topMeshRenderer.sharedMesh = newItem.mesh;
+        topMeshRenderer.material = newItem.material;
     }
 
     /// <summary>

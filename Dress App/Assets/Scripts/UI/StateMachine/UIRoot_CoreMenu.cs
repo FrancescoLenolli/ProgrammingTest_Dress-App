@@ -5,6 +5,8 @@ using UIFramework.StateMachine;
 /// </summary>
 public class UIRoot_CoreMenu : UIRoot
 {
+    //TODO: Consider removing GameManager reference to decouple code (use a Messaging System?).
+    
     public GameManager gameManager;
     public UIView_CoreMenu_Title titleView;
     public UIView_CoreMenu_Main mainView;

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    //TODO: Consider creating "ItemManager" to decrease GameManager responsibilities.
+    
     [SerializeField] private List<Item> items = new List<Item>();
     [SerializeField] private CharacterControl characterControl = null;
     [SerializeField] private ObjectRotation characterRotation = null;

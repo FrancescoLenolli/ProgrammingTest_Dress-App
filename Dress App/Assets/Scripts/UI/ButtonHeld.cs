@@ -10,6 +10,7 @@ using UnityEngine.UI;
 /// </summary>
 public class ButtonHeld : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    //TODO: Check if Unity already provides this feature.
     [SerializeField] private UnityEvent onButtonHeld = null;
 
     private bool canInvokeEvent = false;
@@ -23,7 +24,7 @@ public class ButtonHeld : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         canInvokeEvent = true;
-        StartCoroutine(ButtonHeldRoutine());
+        if(button) StartCoroutine(ButtonHeldRoutine());
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -31,7 +32,7 @@ public class ButtonHeld : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         canInvokeEvent = false;
     }
 
-    public IEnumerator ButtonHeldRoutine()
+    private IEnumerator ButtonHeldRoutine()
     {
         while (canInvokeEvent && button.IsInteractable())
         {

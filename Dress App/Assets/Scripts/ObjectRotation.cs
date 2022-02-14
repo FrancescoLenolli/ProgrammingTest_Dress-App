@@ -5,6 +5,8 @@ using UnityEngine;
 /// </summary>
 public class ObjectRotation : MonoBehaviour
 {
+    //TODO: Check if OnMouseDrag works on mobile with touch input too.
+    
     [SerializeField] private Transform targetObject = null;
     [SerializeField] private float rotationSpeed = 20f;
     private Quaternion startingRotation;
@@ -26,14 +28,14 @@ public class ObjectRotation : MonoBehaviour
         targetObject.Rotate(Vector3.up, -rotationX);
     }
 
-    public void ResetRotation()
-    {
-        targetObject.rotation = startingRotation;
-    }
-
     public void LockRotation()
     {
         ResetRotation();
         CanRotate = false;
+    }
+
+    private void ResetRotation()
+    {
+        targetObject.rotation = startingRotation;
     }
 }
